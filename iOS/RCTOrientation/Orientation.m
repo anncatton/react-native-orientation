@@ -58,7 +58,25 @@ static UIInterfaceOrientationMask _orientation = UIInterfaceOrientationMaskAllBu
       break;
 
     default:
-      orientationStr = @"UNKNOWN";
+      // orientation is unknown, we try to get the status bar orientation
+      switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+        case UIInterfaceOrientationPortrait:
+          orientationStr = @"PORTRAIT";
+          break;
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+
+          orientationStr = @"LANDSCAPE";
+          break;
+
+        case UIInterfaceOrientationPortraitUpsideDown:
+          orientationStr = @"PORTRAITUPSIDEDOWN";
+          break;
+
+        default:
+          orientationStr = @"UNKNOWN";
+          break;
+      }
       break;
   }
   return orientationStr;
@@ -84,7 +102,25 @@ static UIInterfaceOrientationMask _orientation = UIInterfaceOrientationMaskAllBu
       break;
 
     default:
-      orientationStr = @"UNKNOWN";
+      // orientation is unknown, we try to get the status bar orientation
+      switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+        case UIInterfaceOrientationPortrait:
+          orientationStr = @"PORTRAIT";
+          break;
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+
+          orientationStr = @"LANDSCAPE";
+          break;
+
+        case UIInterfaceOrientationPortraitUpsideDown:
+          orientationStr = @"PORTRAITUPSIDEDOWN";
+          break;
+
+        default:
+          orientationStr = @"UNKNOWN";
+          break;
+      }
       break;
   }
   return orientationStr;
@@ -168,7 +204,7 @@ RCT_EXPORT_METHOD(unlockAllOrientations)
   #if DEBUG
     NSLog(@"Unlock All Orientations");
   #endif
-  [Orientation setOrientation:UIInterfaceOrientationMaskAllButUpsideDown];
+  [Orientation setOrientation:UIInterfaceOrientationMaskAll];
 //  AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 //  delegate.orientation = 3;
 }
